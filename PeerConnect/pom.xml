@@ -11,7 +11,7 @@
 	<groupId>com.peerconnect</groupId>
 	<artifactId>PeerConnect</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>PeerConnect</name>
 	<description>Collaborative Sharing Platform - SPE Project</description>
 
