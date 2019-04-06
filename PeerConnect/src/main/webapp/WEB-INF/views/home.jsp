@@ -60,18 +60,24 @@
 		<div class="row">
 			<div class="col-sm-2 bg-light sidebarleft">
 				<div class="nav flex-sm-column text-body">
-					<button type="button" class="btn btn-dark btn-block"><a href="/home">HOME</a></button>
-					<button type="button" class="btn btn-dark btn-block"><a href="/groups/create">CREATE GROUP</a></button>
-					<button type="button" class="btn btn-dark btn-block"><a href="/requestaccepted">MY REQUESTS</a></button>
+					<a href="/home">
+						<button type="button" class="btn btn-dark btn-block">HOME</button>
+					</a>
+					<a href="/groups/create">
+						<button type="button" class="btn btn-dark btn-block">CREATE GROUP</button>
+					</a>
+					<a href="/requestaccepted">
+						<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
+					</a>
 					<button type="button" class="btn btn-dark btn-block">MY ACCEPTED REQUESTS</button>
 				</div>
 			</div>
 
 	    	<div class="col-sm-10 bg-secondary">
+	    		<form name="request_form" action="/home" method="POST">
 	      		<div class="row">
 	          		<div class="col-sm-3"></div>
 	          		<div class="col-sm-6 bg-light requestform rounded-top">
-			            <form name="request_form" action="/home" method="POST">
 			              	<div class="input-group mb-2">
 			                	<div class="input-group-prepend">
 			                  		<span class="input-group-text">Request For</span>
@@ -106,10 +112,10 @@
 							    	</c:forEach>
 					    		</c:if>
 	          				</div>
-	          			</form>
 	          		</div>
 	        		<div class="col-sm-3"></div>
 	      		</div>  
+	      		</form>
 				<div class="row bg-dark" style="height: 90vh; margin-top: 10px; margin-bottom:10px">
 					<div class="col-sm-1"></div>
 					<div class="col-sm-2 bg-light" style="height: 90vh; overflow-y: scroll; padding:10px;">
