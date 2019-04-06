@@ -6,22 +6,22 @@ import javax.persistence.*;
 @Table(name = "usertable")
 public class Usertable {
 	
-	private int user_id;
+	private int userid;
 	@Id
 	private String username;
 	
 	private String password;
 	private String name;
-	private int phone_number;
+	private int phonenumber;
 	
 	@Transient
     private String passwordConfirm;
 	
-	public int getUser_id() {
-		return user_id;
+	public int getUserid() {
+		return userid;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	public String getUsername() {
 		return username;
@@ -41,11 +41,11 @@ public class Usertable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPhone_number() {
-		return phone_number;
+	public int getPhonenumber() {
+		return phonenumber;
 	}
-	public void setPhone_number(int phone_number) {
-		this.phone_number = phone_number;
+	public void setPhonenumber(int phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 	public String getPasswordConfirm() {
         return passwordConfirm;

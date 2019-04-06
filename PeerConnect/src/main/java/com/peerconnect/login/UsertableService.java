@@ -24,10 +24,10 @@ public class UsertableService {
 	}
 	
 	public int findLoggedId()	{
-		return userRepository.findByUsername(SecurityUtility.getUserName()).getUser_id();
+		return userRepository.findByUsername(SecurityUtility.getUserName()).getUserid();
 	}
 	
 	public int findLoggedId(String username)	{
-		return userRepository.findByUsername(username).getUser_id();
+		return userRepository.findByUsername(username).getUserid();
 	}
 }

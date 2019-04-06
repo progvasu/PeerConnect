@@ -1,5 +1,6 @@
 package com.peerconnect.request;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.peerconnect.login.UsertableService;
 import com.peerconnect.requestgroup.RequestgroupService;
+import com.peerconnect.users.UsersSubtableService;
 
 @Service
 public class RequesttableService {
@@ -18,6 +20,9 @@ public class RequesttableService {
 	
 	@Autowired
 	private RequestgroupService requestGroupService;
+	
+	@Autowired
+	private UsersSubtableService subtableService;
 	
 	public RequesttableService() {
 	}
@@ -33,7 +38,16 @@ public class RequesttableService {
 	}
 	
 	public List<Requesttable> getGroupRequests(int groupid)	{
-		return requestRepository.findAllById(requestGroupService.getGroupRequestIds(groupid));
+		// find all the requests associated with this group
+		List<Requesttable> ret = requestRepository.findAllById(requestGroupService.getGroupRequestIds(groupid));
+		
+		Iterator<Requesttable> iter = ret.iterator();
+		while(iter.hasNext())	{
+			Requesttable temp = iter.next();
+			temp.setRequestname(subtableService.getUserNameFromId(temp.getRequestby()));
+		}
+				
+		return ret;
 	}
 	
 	public List<Requesttable> getMyRequestIds(int loggedid)    {

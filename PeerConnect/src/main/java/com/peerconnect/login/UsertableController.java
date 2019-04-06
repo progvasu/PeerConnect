@@ -70,28 +70,23 @@ public class UsertableController {
 
     @GetMapping({"/", "/home"})
     public String welcome(Model model) {
-    	model.addAttribute("message2", "LOGGED IN");
-    	
+    	// showing groups that I have joined for request form
     	List<Integer> myGroupIds = membersService.getMyGroupIds();
     	List<String> myGroupNames = groupService.getGroupNames(myGroupIds);
-    	
     	HashMap<Integer, String> hmap = new HashMap<Integer, String>();
-    	
     	for (int i = 0 ; i < myGroupIds.size() ; i++) {
     		hmap.put(myGroupIds.get(i), myGroupNames.get(i));
     	}
-    
     	model.addAttribute("my_groups", hmap);
     	
-    	// showing request
+    	// showing each group's request
     	HashMap<Groupstable, List<Requesttable>> hmap2 = new HashMap<>();
-    	
     	for (int i : myGroupIds) {
     		hmap2.put(groupService.getGroupById(i), requestService.getGroupRequests(i));
     	}
-    	
     	model.addAttribute("groups_requests", hmap2);
-    	
+  
+    	// giving my id
     	model.addAttribute("myid", userService.findLoggedId());
     	
         return "home";

@@ -24,6 +24,10 @@
   	function sendChatRedirect(a, b) {
 		window.location.href = '/chatinsert?requestid='+a+'&groupid='+b;
 	}
+
+  	window.onload = function() {
+  		document.getElementsByClassName("blocks")[0].style.display = "block";
+	}
   </script>
 </head>
 <body>
@@ -140,7 +144,7 @@
 										<div class="row groupmainspacing">
 											<div class="media border border-dark rounded-lg" style="padding: 5px; width:100%">
 											    <div class="media-body" style="word-break: break-all;">
-											    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">${request.getRequestby()}<small style="float: right; font-size: 12px"><i>${request.getCreatedate()}</i></small></h6>
+											    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">${request.getRequestname()}<small style="float: right; font-size: 12px"><i>${request.getCreatedate()}</i></small></h6>
 											    	<span style="font-size: 13px;">${request.getRequestmsg()}</span>
 											    	<div style="float: right">
 											    		<c:if test="${request.getRequestby() ne myid}">

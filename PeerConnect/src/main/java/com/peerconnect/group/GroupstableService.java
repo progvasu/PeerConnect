@@ -29,7 +29,7 @@ public class GroupstableService {
 		
 		// else 2. create the group
 		// need to set the admin id - INSERT!!! - waiting for login module				
-		group.setAdmin_id(userRepository.findByUsername(SecurityUtility.getUserName()).getUser_id());
+		group.setAdmin_id(userRepository.findByUsername(SecurityUtility.getUserName()).getUserid());
 		groupsRepository.save(group);
 		groupsRepository.flush();
 		

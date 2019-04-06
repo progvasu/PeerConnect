@@ -19,4 +19,8 @@ public class UsersSubtableService {
 		
 		return list;
 	}
+	
+	public String getUserNameFromId(int userid)	{
+		return usersSubRepository.findByUserid(userid).getUsername();
+	}
 }

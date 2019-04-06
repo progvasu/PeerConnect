@@ -20,6 +20,17 @@ public class Requesttable {
 		private String stopdate;
 		private String stoptime;
 		
+		@Transient
+		private String requestname;
+		
+		public String getRequestname() {
+			return requestname;
+		}
+
+		public void setRequestname(String requestname) {
+			this.requestname = requestname;
+		}
+
 		public Requesttable()	{
 			
 		}
@@ -29,7 +40,7 @@ public class Requesttable {
 			
 			Date date = Calendar.getInstance().getTime();  
 			
-	        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+	        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
 	        DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 	        
 	        String strDate = dateFormat.format(date); 
