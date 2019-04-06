@@ -22,7 +22,6 @@ public class RequestacceptedtableController {
 	
 	@GetMapping("/requestaccepted")
     public ModelAndView allrequestaccepted(Model model) {
-    	System.out.println("step 1");
     	int loggedid = userService.findLoggedId();
     	List<Requesttable> myRequestIds = requestService.getMyRequestIds(loggedid);
     	
@@ -32,7 +31,6 @@ public class RequestacceptedtableController {
     	for (int i = 0 ; i < myRequestIds.size() ; i++) {
     		list.add(myRequestIds.get(i).getRequestid());
     	}
-    	System.out.println("step 2");
 
     	ModelAndView model3 = new ModelAndView("/requestaccepted");
     	System.out.println(requestRepo.findAllByRequestidIn(list));

@@ -82,14 +82,13 @@
 			                	<div class="input-group-prepend">
 			                  		<span class="input-group-text">Request For</span>
 			                	</div>
-	                			<input type="text" name="request_msg" class="form-control">
+	                			<input type="text" name="request_msg" class="form-control" required>
 	                			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	                			<button type="submit" class="btn btn-dark btn-md requestbutton">Request</button>
 	              			</div>
 	          		</div>
 	          		<div class="col-sm-3">
 	          			<!--  Design Them  -->
-	          			${message2}
 	          			${message}
 	          		</div>
 	      		</div>
