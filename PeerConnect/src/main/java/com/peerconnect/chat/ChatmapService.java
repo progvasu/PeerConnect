@@ -28,10 +28,12 @@ public class ChatmapService {
 		List<Integer> requestids = new ArrayList<>();
 		
 		for(Chatmap temp : chatmaps)
-			requestids.add(temp.getAcceptby());
+			requestids.add(temp.getRequestid());
 		
 		return requestids;
 	}
+	
+	
 	
 	// get my requests which got accepted
 	public List<Chatmap> getAcceptedRequests(List<Integer> requestids)	{
