@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.peerconnect.login.SecurityUtility;
-import com.peerconnect.login.UsertableRepository;
+import com.peerconnect.login.UsertableService;
 
 @Service
 public class GroupstableService {
@@ -15,7 +14,7 @@ public class GroupstableService {
 	private GroupstableRepository groupsRepository;
 	
 	@Autowired
-	private UsertableRepository userRepository;
+	private UsertableService usertableService;
 	
 	public boolean createGroup(Groupstable group) {
 		// create a new group
@@ -27,9 +26,8 @@ public class GroupstableService {
 			return false;
 		}
 		
-		// else 2. create the group
-		// need to set the admin id - INSERT!!! - waiting for login module				
-		group.setAdmin_id(userRepository.findByUsername(SecurityUtility.getUserName()).getUserid());
+		// else 2. create the group			
+		group.setAdmin_id(usertableService.findLoggedId());
 		groupsRepository.save(group);
 		groupsRepository.flush();
 		

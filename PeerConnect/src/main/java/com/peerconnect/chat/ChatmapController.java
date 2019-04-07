@@ -1,24 +1,29 @@
-package com.peerconnect.requestaccepted;
+package com.peerconnect.chat;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.peerconnect.login.UsertableService;
 import com.peerconnect.request.Requesttable;
 import com.peerconnect.request.RequesttableService;
-@RestController
-public class RequestacceptedtableController {
 
+@RestController
+public class ChatmapController {
 	@Autowired
 	UsertableService userService;
+	
 	@Autowired
 	RequesttableService requestService;
+	
 	@Autowired
-	RequestacceptedRepository requestRepo;
+	ChatmapRepository chatmapRepo;
+	
 	
 	@GetMapping("/requestaccepted")
     public ModelAndView allrequestaccepted(Model model) {
@@ -33,10 +38,10 @@ public class RequestacceptedtableController {
     	}
 
     	ModelAndView model3 = new ModelAndView("/requestaccepted");
-    	System.out.println(requestRepo.findAllByRequestidIn(list));
+    	System.out.println(chatmapRepo.findAllByRequestidIn(list));
 
-    	model3.addObject("requestaccepted", requestRepo.findAllByRequestidIn(list));
-    	//model3.addObject("itemname", requestService.find());
+    	model3.addObject("requestaccepted", chatmapRepo.findAllByRequestidIn(list));
+
         return model3;
     }
 }
