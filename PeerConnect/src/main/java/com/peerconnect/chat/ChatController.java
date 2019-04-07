@@ -83,7 +83,7 @@ public class ChatController {
         return model2;
     }
     //------------------------------------------------------------------------------------------
-
+    //------------------------------
 
 	@MessageMapping("{chatid}/message2")
 	@SendTo("/topic/{chatid}/message")
