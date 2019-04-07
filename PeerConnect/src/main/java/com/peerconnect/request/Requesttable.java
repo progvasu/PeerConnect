@@ -4,8 +4,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
+
+import com.peerconnect.chat.Chatmap;
 
 @Entity
 @Table(name="requesttable")
@@ -20,6 +23,16 @@ public class Requesttable {
 		private String stopdate;
 		private String stoptime;
 		
+		@OneToMany(mappedBy="requestmapped", cascade=CascadeType.ALL)
+		private List<Chatmap> chatmaps;
+		
+		public List<Chatmap> getChatmaps() {
+			return chatmaps;
+		}
+
+		public void setChatmaps(List<Chatmap> chatmaps) {
+			this.chatmaps = chatmaps;
+		}
 		@Transient
 		private String requestbyname;
 		

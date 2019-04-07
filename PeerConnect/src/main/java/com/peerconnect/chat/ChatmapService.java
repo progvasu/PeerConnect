@@ -22,21 +22,23 @@ public class ChatmapService {
 		return true;
 	}
 	
-	List<Integer> getRequestsAcceptedByMe(int groupid)	{
+	public List<Integer> getRequestsAcceptedByMe(int groupid)	{
 		List<Chatmap> chatmaps = chatmapRepository.findByGroupidAndAcceptby(groupid, usertableService.findLoggedId()); 
 		
 		List<Integer> requestids = new ArrayList<>();
-		
-		for(Chatmap temp : chatmaps)
+	
+		for(Chatmap temp : chatmaps)	{
 			requestids.add(temp.getRequestid());
-		
+		}
 		return requestids;
 	}
 	
-	
-	
-	// get my requests which got accepted
-	public List<Chatmap> getAcceptedRequests(List<Integer> requestids)	{
+	// get chatmap objects
+	public List<Chatmap> getChatMapObjects(List<Integer> requestids)	{
 		return  chatmapRepository.findAllByRequestidIn(requestids);
+	}
+	
+	public Chatmap getChatMapObject(int chatid)	{
+		return chatmapRepository.findByChatid(chatid);
 	}
 }

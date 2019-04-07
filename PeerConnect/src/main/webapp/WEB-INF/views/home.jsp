@@ -140,31 +140,43 @@
 								    	<button type="button" class="btn btn-dark btn-block">
 									 		${group.key.getName()}
 										</button>
-									</div>
-									
-										<c:forEach items="${group.value}" var="request">
-										<div class="row groupmainspacing">
-											<div class="media border border-dark rounded-lg" style="padding: 5px; width:100%">
-											    <div class="media-body" style="word-break: break-all;">
-											    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">${request.getRequestbyname()}<small style="float: right; font-size: 12px"><i>${request.getCreatedate()}</i></small></h6>
-											    	<span style="font-size: 13px;">${request.getRequestmsg()}</span>
-											    	<div style="float: right">
-											    		<c:if test="${request.getRequestby() ne myid}">
-												    		<button type="button" class="btn btn-outline-dark btn-sm" onclick="sendChatRedirect(${request.getRequestid()}, ${group.key.getId()})">
-														 		Accept
-															</button>
-														</c:if>
-														<c:if test="${request.getRequestby() eq myid}">
-															<button type="button" class="btn btn-outline-dark btn-sm">
-														 		Withdraw Request
-															</button>
-														</c:if>
-											    	</div>
-											    </div>
-											</div>
-											</div>
-										</c:forEach>
-									
+									</div>									
+									<c:forEach items="${group.value}" var="request">
+									<div class="row groupmainspacing">
+										<div class="media border border-dark rounded-lg" style="padding: 5px; width:100%">
+										    <div class="media-body" style="word-break: break-all;">
+										    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">${request.getRequestbyname()}<small style="float: right; font-size: 12px"><i>${request.getCreatedate()}</i></small></h6>
+										    	<span style="font-size: 13px;">${request.getRequestmsg()}</span>
+										    	<div style="float: right">
+										    		<c:if test="${request.getRequestby() ne myid}">
+											    		<c:choose>
+											    			<c:when test="${request.isAcceptedbyme()}">
+														        <form name="chat" method="POST" action="/chat/chat">
+														        	<input type='hidden' id='chatid' name='chatid' value='${request.getChatmaps().get(0).getChatid()}'/>
+														        	<input type='hidden' id='valid' name='valid' value='true'/>
+														        	<button type="submit" class="btn btn-outline-dark btn-sm">
+														 				Open Chat
+																	</button>
+																	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+																</form>
+														    </c:when>    
+														    <c:otherwise>
+														        <button type="button" class="btn btn-outline-dark btn-sm" onclick="sendChatRedirect(${request.getRequestid()}, ${group.key.getId()})">
+														 			Accept
+																</button>
+														    </c:otherwise>
+														</c:choose>
+													</c:if>
+													<c:if test="${request.getRequestby() eq myid}">
+														<button type="button" class="btn btn-outline-dark btn-sm">
+													 		Withdraw Request
+														</button>
+													</c:if>
+										    	</div>
+										    </div>
+										</div>
+										</div>
+									</c:forEach>
 								</div>
 							</c:forEach>
 						</c:if>

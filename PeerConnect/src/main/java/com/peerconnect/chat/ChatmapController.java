@@ -37,27 +37,25 @@ public class ChatmapController {
 	
 	@Autowired
 	ChatmapService chatmapService;
-	
-	
+
 	@GetMapping("/requestaccepted")
     public ModelAndView allrequestaccepted(Model model) {
     	int loggedid = userService.findLoggedId();
     	List<Requesttable> myRequestIds = requestService.getMyRequestIds(loggedid);
-    	
-    	
-    	List<Integer> list = new ArrayList<>();
-    	
+    
+    	List<Integer> list = new ArrayList<>();;
+
     	for (int i = 0 ; i < myRequestIds.size() ; i++) {
     		list.add(myRequestIds.get(i).getRequestid());
     	}
 
     	ModelAndView model3 = new ModelAndView("/requestaccepted");
 
-    	model3.addObject("requestaccepted", chatmapRepo.findAllByRequestidIn(list));
-
+    	model3.addObject("requestaccepted", chatmapService.getChatMapObjects(list));
+    	
         return model3;
     }
-	//-------------------------------------------------------------------------------
+	
 	@GetMapping("/requestacceptedbyme/accepted")
     public ModelAndView requestacceptedbyme(Model model) {
 		
@@ -75,6 +73,6 @@ public class ChatmapController {
     	model.addAttribute("grouprequests", hmap2);
         return new ModelAndView("/requestacceptedbyme/accepted");
     }
-	//-------------------------------------------------------------------------------
+	
 
 }

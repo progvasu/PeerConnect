@@ -2,6 +2,8 @@ package com.peerconnect.chat;
 
 import javax.persistence.*;
 
+import com.peerconnect.request.Requesttable;
+
 @Entity
 @Table(name = "chatmap")
 @IdClass(ChatmapKey.class)
@@ -14,6 +16,17 @@ public class Chatmap {
 	private int requestid;
 	@Id
 	private int acceptby;
+	
+	@ManyToOne
+	@JoinColumn(name="requestid", insertable=false, updatable=false)
+	private Requesttable requestmapped;
+	
+	public Requesttable getRequestmapped() {
+		return requestmapped;
+	}
+	public void setRequestmapped(Requesttable requestmapped) {
+		this.requestmapped = requestmapped;
+	}
 	
 	public int getChatid() {
 		return chatid;
