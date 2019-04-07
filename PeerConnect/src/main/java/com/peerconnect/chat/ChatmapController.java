@@ -38,7 +38,6 @@ public class ChatmapController {
     	}
 
     	ModelAndView model3 = new ModelAndView("/requestaccepted");
-    	System.out.println(chatmapRepo.findAllByRequestidIn(list));
 
     	model3.addObject("requestaccepted", chatmapRepo.findAllByRequestidIn(list));
 
