@@ -77,6 +77,24 @@ public class ChatController {
 		
 		// chat id for chat messaging
 		model2.addObject("chatid", model.asMap().get("chatid"));
+		int chatid = (Integer)model.asMap().get("chatid");
+		// chat id for chat messaging
+        model2.addObject("chatid", chatid);
+        // get chatmap object
+        Chatmap obj = chatMapService.getChatMapObject(chatid);
+        // get groupname
+        model2.addObject("groupname", groupService.getGroupName(obj.getGroupid()));
+        // get request message
+        model2.addObject("requestmsg", requestService.getRequestObject(obj.getRequestid()).get().getRequestmsg());
+        // get acceptor name
+        if (obj.getAcceptby() == userService.findLoggedId())	{
+        	model2.addObject("acceptname", "YOU");
+        	model2.addObject("requestorname", usersubService.getUserNameFromId(requestService.getRequestObject(obj.getRequestid()).get().getRequestby()));
+        }
+        else	{
+        	model2.addObject("acceptname", usersubService.getUserNameFromId(obj.getAcceptby()));
+        	model2.addObject("requestorname", "YOU");
+        }
 		
 		return model2;
 	}
