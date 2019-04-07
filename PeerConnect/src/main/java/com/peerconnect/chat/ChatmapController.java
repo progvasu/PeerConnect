@@ -22,14 +22,12 @@ public class ChatmapController {
 	RequesttableService requestService;
 	
 	@Autowired
-	ChatmapRepository chatmapRepo;
-	
+	ChatmapService chatmapService;
 	
 	@GetMapping("/requestaccepted")
     public ModelAndView allrequestaccepted(Model model) {
     	int loggedid = userService.findLoggedId();
     	List<Requesttable> myRequestIds = requestService.getMyRequestIds(loggedid);
-    	
     	
     	List<Integer> list = new ArrayList<>();;
     	
@@ -39,8 +37,8 @@ public class ChatmapController {
 
     	ModelAndView model3 = new ModelAndView("/requestaccepted");
 
-    	model3.addObject("requestaccepted", chatmapRepo.findAllByRequestidIn(list));
-
+    	model3.addObject("requestaccepted", chatmapService.getChatMapObjects(list));
+    	
         return model3;
     }
 }

@@ -151,9 +151,14 @@
 										    		<c:if test="${request.getRequestby() ne myid}">
 											    		<c:choose>
 											    			<c:when test="${request.isAcceptedbyme()}">
-														        <button type="button" class="btn btn-outline-dark btn-sm" onclick="sendChatRedirect(${request.getRequestid()}, ${group.key.getId()})">
-														 			Open Chat
-																</button>
+														        <form name="chat" method="POST" action="/chat/chat">
+														        	<input type='hidden' id='chatid' name='chatid' value='${request.getChatmaps().get(0).getChatid()}'/>
+														        	<input type='hidden' id='valid' name='valid' value='true'/>
+														        	<button type="submit" class="btn btn-outline-dark btn-sm">
+														 				Open Chat
+																	</button>
+																	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+																</form>
 														    </c:when>    
 														    <c:otherwise>
 														        <button type="button" class="btn btn-outline-dark btn-sm" onclick="sendChatRedirect(${request.getRequestid()}, ${group.key.getId()})">

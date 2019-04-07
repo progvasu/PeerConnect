@@ -120,16 +120,16 @@
 
 	    	<div class="col-sm-10 bg-secondary">
 	      		<div class="row chathead">
-	          		<span class="badge badge-dark chatheadlabel">Group Name</span> <span class="badgelabel">College Group</span>
+	          		<span class="badge badge-dark chatheadlabel">Group Name</span> <span class="badgelabel" style="color: white">${groupname}</span>
 	      		</div>
 	      		<div class="row chathead">
-	          		<span class="badge badge-dark chatheadlabel">Requestor Name</span> <span class="badgelabel">Vasu Bansal</span>
+	          		<span class="badge badge-dark chatheadlabel">Requestor Name</span> <span class="badgelabel" style="color: white">${requestorname}</span>
 	      		</div>
 	      		<div class="row chathead">
-	          		<span class="badge badge-dark chatheadlabel">Acceptor Name</span> <span class="badgelabel">Vasu Bansal</span>
+	          		<span class="badge badge-dark chatheadlabel">Acceptor Name</span> <span class="badgelabel" style="color: white">${acceptname}</span>
 	      		</div>
 	      		<div class="row chathead">
-	          		<span class="badge badge-dark chatheadlabel">Requested Item</span> <span class="badgelabel">Football</span>
+	          		<span class="badge badge-dark chatheadlabel">Request</span> <span class="badgelabel" style="color: white">${requestmsg}</span>
 	      		</div>
 	      		<div class="row bg-dark" style="height: 62.8vh; margin-top: 5px;">
 					<div class="col-sm-2"></div>

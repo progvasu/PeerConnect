@@ -2,6 +2,7 @@ package com.peerconnect.request;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,6 +58,8 @@ public class RequesttableService {
 			
 			if (myacceptedrequestids.contains(new Integer(temp.getRequestid())))	{
 				temp.setAcceptedbyme(true);
+				// since this is the request accepted by me it should have just one chatmap entry
+				// System.out.println(temp.getChatmaps().size());
 			}
 			else	{
 				temp.setAcceptedbyme(false);
@@ -68,5 +71,9 @@ public class RequesttableService {
 	
 	public List<Requesttable> getMyRequestIds(int loggedid)    {
         return requestRepository.findAllByRequestby(loggedid);
+	}
+	
+	public Optional<Requesttable> getRequestObject(int requestid)	{
+		return requestRepository.findById(requestid);
 	}
 }
