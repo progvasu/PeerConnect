@@ -41,10 +41,13 @@ public class RequesttableService {
 		// find all the requests associated with this group
 		List<Requesttable> ret = requestRepository.findAllById(requestGroupService.getGroupRequestIds(groupid));
 		
+		// find all the request ids accepted by for this group
+//		List<Integer> myacceptedrequestids = 
+		
 		Iterator<Requesttable> iter = ret.iterator();
 		while(iter.hasNext())	{
 			Requesttable temp = iter.next();
-			temp.setRequestname(subtableService.getUserNameFromId(temp.getRequestby()));
+			temp.setRequestbyname(subtableService.getUserNameFromId(temp.getRequestby()));
 		}
 				
 		return ret;

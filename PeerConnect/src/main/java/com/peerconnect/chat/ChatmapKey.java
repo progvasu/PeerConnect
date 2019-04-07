@@ -18,13 +18,9 @@ public class ChatmapKey implements Serializable{
 		return chatid;
 	}
 
-
-
 	public void setChatid(int chatid) {
 		this.chatid = chatid;
 	}
-
-
 
 	public int getGroupid() {
 		return groupid;

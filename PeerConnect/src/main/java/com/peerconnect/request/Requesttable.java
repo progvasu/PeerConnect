@@ -21,14 +21,25 @@ public class Requesttable {
 		private String stoptime;
 		
 		@Transient
-		private String requestname;
+		private String requestbyname;
 		
-		public String getRequestname() {
-			return requestname;
+		@Transient
+		private boolean acceptedbyme;
+		
+		public boolean isAcceptedbyme() {
+			return acceptedbyme;
 		}
 
-		public void setRequestname(String requestname) {
-			this.requestname = requestname;
+		public void setAcceptedbyme(boolean acceptedbyme) {
+			this.acceptedbyme = acceptedbyme;
+		}
+
+		public String getRequestbyname() {
+			return requestbyname;
+		}
+
+		public void setRequestbyname(String requestname) {
+			this.requestbyname = requestname;
 		}
 
 		public Requesttable()	{
