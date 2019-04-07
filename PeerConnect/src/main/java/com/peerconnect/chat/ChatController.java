@@ -78,7 +78,6 @@ public class ChatController {
     @RequestMapping(method=RequestMethod.POST, value="/chat/chat")
     public ModelAndView displayChat1(@RequestParam("chatid") int chatid) {
         ModelAndView model2 = new ModelAndView("chat/chat");
-        System.out.println(chatid);
         model2.addObject("chatid", chatid);
         return model2;
     }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.peerconnect.chat.ChatmapService;
 import com.peerconnect.login.UsertableService;
 import com.peerconnect.requestgroup.RequestgroupService;
 import com.peerconnect.users.UsersSubtableService;
@@ -23,6 +24,9 @@ public class RequesttableService {
 	
 	@Autowired
 	private UsersSubtableService subtableService;
+	
+	@Autowired 
+	private ChatmapService chatmapService;
 	
 	public RequesttableService() {
 	}
@@ -42,12 +46,21 @@ public class RequesttableService {
 		List<Requesttable> ret = requestRepository.findAllById(requestGroupService.getGroupRequestIds(groupid));
 		
 		// find all the request ids accepted by for this group
-//		List<Integer> myacceptedrequestids = 
+		List<Integer> myacceptedrequestids = chatmapService.getRequestsAcceptedByMe(groupid);
 		
 		Iterator<Requesttable> iter = ret.iterator();
 		while(iter.hasNext())	{
 			Requesttable temp = iter.next();
+			
+			// set requestby name
 			temp.setRequestbyname(subtableService.getUserNameFromId(temp.getRequestby()));
+			
+			if (myacceptedrequestids.contains(new Integer(temp.getRequestid())))	{
+				temp.setAcceptedbyme(true);
+			}
+			else	{
+				temp.setAcceptedbyme(false);
+			}
 		}
 				
 		return ret;
