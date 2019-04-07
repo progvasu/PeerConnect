@@ -72,7 +72,7 @@
 					</a>
 					<a href="/requestaccepted">
 						<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
-					</a>
+					</a href="/requestacceptedbyme/accepted">
 					<button type="button" class="btn btn-dark btn-block">MY ACCEPTED REQUESTS</button>
 				</div>
 			</div>
