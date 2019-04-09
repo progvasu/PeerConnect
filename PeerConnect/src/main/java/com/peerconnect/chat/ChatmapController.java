@@ -1,8 +1,8 @@
 package com.peerconnect.chat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.peerconnect.login.UsertableService;
 import com.peerconnect.request.Requesttable;
 import com.peerconnect.request.RequesttableService;
+import com.peerconnect.users.UsersSubtableService;
 
 @RestController
 public class ChatmapController {
 	@Autowired
 	UsertableService userService;
+	
+	@Autowired
+	UsersSubtableService usersSubtableService;
 	
 	@Autowired
 	RequesttableService requestService;
@@ -26,19 +30,24 @@ public class ChatmapController {
 	
 	@GetMapping("/requestaccepted")
     public ModelAndView allrequestaccepted(Model model) {
-    	int loggedid = userService.findLoggedId();
-    	List<Requesttable> myRequestIds = requestService.getMyRequestIds(loggedid);
     	
-    	List<Integer> list = new ArrayList<>();;
-    	
-    	for (int i = 0 ; i < myRequestIds.size() ; i++) {
-    		list.add(myRequestIds.get(i).getRequestid());
+    	List<Integer> myRequestIds = requestService.getMyRequestraisedIds();
+    	HashMap<Requesttable, List<String>> hmap3 = new HashMap<>();
+    	for (int i : myRequestIds) {
+    		List<Integer> acceptersid = chatmapService.getChatMapObjectsbyrequestid(i);
+    		List<String> acceptersname = new ArrayList<>();;
+    		for(int temp : acceptersid)
+    		{
+    			acceptersname.add(usersSubtableService.getUserNameFromId(temp));
+    		}
+    		hmap3.put(requestService.getRequestObj(i), acceptersname);
     	}
-
-    	ModelAndView model3 = new ModelAndView("/requestaccepted");
-
-    	model3.addObject("requestaccepted", chatmapService.getChatMapObjects(list));
     	
-        return model3;
+    	model.addAttribute("requestaccepted", hmap3);
+        return new ModelAndView("/requestaccepted");
+    	
     }
+	
+	
+	
 }

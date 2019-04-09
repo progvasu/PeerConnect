@@ -9,4 +9,5 @@ public interface ChatmapRepository extends JpaRepository<Chatmap, ChatmapKey> {
 	List<Chatmap> findAllByRequestidIn(List<Integer> requestid);
 	
 	Chatmap findByChatid(int chatid);
+	List<Chatmap> findAllByRequestid(int requestid);
 }

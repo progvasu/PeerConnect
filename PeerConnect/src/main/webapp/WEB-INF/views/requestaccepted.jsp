@@ -10,18 +10,16 @@
 	
 	<h1>Request Accepted</h1>
 		<c:if test="${not empty requestaccepted}">
-		    <c:forEach items="${requestaccepted}" var="lists">
-		    <form name="chat" method="POST" action="/chat/chat">
-		    ${lists.getChatid()}
-    			<input type='hidden' id='chatid' name='chatid' value='${lists.getChatid()}'/>
-    			 ${lists.getRequestid()}  ${lists.getAcceptby()}
-    			<input type="submit" value="View Request">
-    			 <br>
-    			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			</form>
-		     
-		    	
-			</c:forEach>
+							<c:forEach items="${requestaccepted}" var="request">				    
+							    ${request.key.getRequestid()}<br>
+							    ${request.key.getRequestmsg()}<br>
+							    ${request.key.getCreatedate()}<br>
+							    ${request.key.getCreatetime()}<br>
+								<c:forEach items="${request.value}" var="acceptername">
+										 <pre>${acceptername}</pre>
+								</c:forEach>
+								<br>--------------------------------------------------------<br>
+							</c:forEach>
 		</c:if>
 		
 	  

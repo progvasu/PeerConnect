@@ -34,8 +34,18 @@ public class ChatmapService {
 	}
 	
 	// get chatmap objects
-	public List<Chatmap> getChatMapObjects(List<Integer> requestids)	{
-		return  chatmapRepository.findAllByRequestidIn(requestids);
+//	public List<Chatmap> getChatMapObjects(List<Integer> requestids)	{
+//		return  chatmapRepository.findAllByRequestidIn(requestids);
+//	}
+	public List<Integer> getChatMapObjectsbyrequestid(int requestid)	{
+		List<Chatmap> chatmaps =chatmapRepository.findAllByRequestid(requestid);
+		List<Integer> acceptersid = new ArrayList<>();
+		
+		for(Chatmap temp : chatmaps)	{
+			acceptersid.add(temp.getAcceptby());
+		}
+		return acceptersid;
+		
 	}
 	
 	public Chatmap getChatMapObject(int chatid)	{
