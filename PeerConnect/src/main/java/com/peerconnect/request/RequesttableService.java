@@ -1,6 +1,5 @@
 package com.peerconnect.request;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -74,16 +73,8 @@ public class RequesttableService {
         return requestRepository.findAllByRequestby(loggedid);
 	}
 	
-	public List<Integer> getMyRequestraisedIds()    {
-		List<Integer> myRequestraisedIds = new ArrayList<>();
-		
-		List<Requesttable> myRequestraisedObjects = requestRepository.findAllByRequestby(userService.findLoggedId());
-		
-		for (int i = 0 ; i < myRequestraisedObjects.size() ; i++) {
-			myRequestraisedIds.add(myRequestraisedObjects.get(i).getRequestid());
-    	}
-        
-		return myRequestraisedIds;
+	public List<Requesttable> getMyRaisedRequestObjects()    {
+		return requestRepository.findAllByRequestby(userService.findLoggedId());
 	}
 
 	public List<Requesttable> getRequestsAcceptedByMeObjects(List<Integer> requestids)    {
