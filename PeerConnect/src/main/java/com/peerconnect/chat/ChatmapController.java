@@ -49,7 +49,7 @@ public class ChatmapController {
     		{
     			acceptersname.add(usersSubtableService.getUserNameFromId(temp));
     		}
-    		hmap3.put(requestService.getRequestObj(i), acceptersname);
+    		hmap3.put(requestService.getRequestObject(i).get(), acceptersname);
     	}
     	
     	model.addAttribute("requestaccepted", hmap3);

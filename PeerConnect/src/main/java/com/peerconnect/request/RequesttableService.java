@@ -71,30 +71,36 @@ public class RequesttableService {
 	}
 	
 	public List<Requesttable> getMyRequestIds(int loggedid)    {
-		
         return requestRepository.findAllByRequestby(loggedid);
 	}
 	
 	public List<Integer> getMyRequestraisedIds()    {
-			
-			List<Integer> myRequestraisedIds = new ArrayList<>();
-			List<Requesttable> myRequestraisedObjects = requestRepository.findAllByRequestby(userService.findLoggedId());
-			for (int i = 0 ; i < myRequestraisedObjects.size() ; i++) {
-				myRequestraisedIds.add(myRequestraisedObjects.get(i).getRequestid());
-	    	}
-	        return myRequestraisedIds;
-		}
+		List<Integer> myRequestraisedIds = new ArrayList<>();
+		
+		List<Requesttable> myRequestraisedObjects = requestRepository.findAllByRequestby(userService.findLoggedId());
+		
+		for (int i = 0 ; i < myRequestraisedObjects.size() ; i++) {
+			myRequestraisedIds.add(myRequestraisedObjects.get(i).getRequestid());
+    	}
+        
+		return myRequestraisedIds;
+	}
 
 	public List<Requesttable> getRequestsAcceptedByMeObjects(List<Integer> requestids)    {
-		return requestRepository.findAllByRequestidIn(requestids);
+		List<Requesttable> ret = requestRepository.findAllById(requestids);
+		
+		Iterator<Requesttable> iter = ret.iterator();
+		while(iter.hasNext())	{
+			Requesttable temp = iter.next();
+			
+			// set requestby name
+			temp.setRequestbyname(subtableService.getUserNameFromId(temp.getRequestby()));
+		}
+		
+		return ret;
 	}
 
 	public Optional<Requesttable> getRequestObject(int requestid)	{
 		return requestRepository.findById(requestid);
 	}
-	public Requesttable getRequestObj(int requestid)	{
-		return requestRepository.findByRequestid(requestid);
-	}
-	
-
 }
