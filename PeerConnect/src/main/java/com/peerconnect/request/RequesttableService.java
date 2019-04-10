@@ -74,7 +74,7 @@ public class RequesttableService {
 		
         return requestRepository.findAllByRequestby(loggedid);
 	}
-	//------------------------------------------------------------------------------
+	
 	public List<Integer> getMyRequestraisedIds()    {
 			
 			List<Integer> myRequestraisedIds = new ArrayList<>();
@@ -84,7 +84,6 @@ public class RequesttableService {
 	    	}
 	        return myRequestraisedIds;
 		}
-	//------------------------------------------------------------------------------
 
 	public List<Requesttable> getRequestsAcceptedByMeObjects(List<Integer> requestids)    {
 		return requestRepository.findAllByRequestidIn(requestids);

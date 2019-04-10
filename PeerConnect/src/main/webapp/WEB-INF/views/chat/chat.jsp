@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,28 +136,36 @@
 	      		<div class="row bg-dark" style="height: 62.8vh; margin-top: 5px;">
 					<div class="col-sm-2"></div>
 					<div id="chatbox" class="col-sm-8 bg-light" style="height: 62.8vh; overflow-y: scroll; padding: 10px">
-					    <div class="row chatspacing">
-					    	<div class="col-sm-8">
-								<div class="media border border-dark rounded-lg" style="padding: 5px;">
-								    <div class="media-body" style="word-break: break-all;">
-								    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">&nbsp;<small style="float: right; font-size: 12px"><i>February 19, 2016</i></small></h6>
-								    	<span style="font-size: 15px;">Hi! I have the item you requested for!</span>
-								    </div>
-								</div>
-							</div>
-							<div class="col-sm-4"></div>
-						</div>
-						<div class="row chatspacing">
-							<div class="col-sm-4"></div>
-							<div class="col-sm-8">
-								<div class="media border border-dark rounded-lg" style="padding: 5px;">
-								    <div class="media-body" style="word-break: break-all;">
-								    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">&nbsp;<small style="float: right; font-size: 12px"><i>February 19, 2016</i></small></h6>
-								    	<span style="font-size: 15px;">Great! Can I borrow it for few days</span>
-								    </div>
-								</div>
-							</div>
-						</div>
+					    <c:if test="${not empty oldchatmsgs}">
+					    	<c:forEach items="${oldchatmsgs}" var="list">
+					    		<c:if test="${myid eq list.getSenderid()}">
+					    			<div class="row chatspacing">
+										<div class="col-sm-4"></div>
+										<div class="col-sm-8">
+											<div class="media border border-dark rounded-lg" style="padding: 5px;">
+											    <div class="media-body" style="word-break: break-all;">
+											    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">&nbsp;<small style="float: right; font-size: 12px"><i>${list.getDate()}</i></small></h6>
+											    	<span style="font-size: 15px;">${list.getMessage()}</span>
+											    </div>
+											</div>
+										</div>
+									</div>	
+					    		</c:if>
+					    		<c:if test="${myid ne list.getSenderid()}">
+					    			<div class="row chatspacing">
+								    	<div class="col-sm-8">
+											<div class="media border border-dark rounded-lg" style="padding: 5px;">
+											    <div class="media-body" style="word-break: break-all;">
+											    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">&nbsp;<small style="float: right; font-size: 12px"><i>${list.getDate()}</i></small></h6>
+											    	<span style="font-size: 15px;">${list.getMessage()}</span>
+											    </div>
+											</div>
+										</div>
+										<div class="col-sm-4"></div>
+									</div>
+					    		</c:if>
+					    	</c:forEach>
+					    </c:if>
 					</div>
 					<div class="col-sm-2"></div>
 				</div>  

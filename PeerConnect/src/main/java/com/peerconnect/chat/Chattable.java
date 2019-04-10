@@ -1,5 +1,9 @@
 package com.peerconnect.chat;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,10 +11,11 @@ import javax.persistence.*;
 public class Chattable {
 	@Id
 	private int msgid;
-	 private int chatid; 
-	 private int senderid;
-	 private String message;
-	 private String date;
+	private int chatid; 
+	private int senderid;
+	private String message;
+	private Date date;
+	
 	public int getMsgid() {
 		return msgid;
 	}
@@ -36,9 +41,10 @@ public class Chattable {
 		this.message = message;
 	}
 	public String getDate() {
-		return date;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");  
+        return dateFormat.format(date);  
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	 
