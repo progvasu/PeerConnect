@@ -54,7 +54,13 @@
 
 	function showMessage(e) {
 		var div = document.getElementById('chatbox');
-		div.innerHTML += "<div class='row chatspacing'><div class='col-sm-4'></div><div class='col-sm-8'><div class='media border border-dark rounded-lg' style='padding: 5px;'><div class='media-body' style='word-break: break-all;'><h6 class='font-weight-bold' style='margin-bottom: 5px;'>&nbsp<small style='float: right; font-size: 12px'><i>" + e.date + "</i></small></h6><span style='font-size: 15px;'>" + e.message + "</span></div></div></div></div>";
+
+		if (${myid} == e.senderid)	{
+			div.innerHTML += "<div class='row chatspacing'><div class='col-sm-4'></div><div class='col-sm-8'><div class='media border border-dark rounded-lg' style='padding: 5px;'><div class='media-body' style='word-break: break-all;'><h6 class='font-weight-bold' style='margin-bottom: 5px;'>&nbsp<small style='float: right; font-size: 12px'><i>" + e.date + "</i></small></h6><span style='font-size: 15px;'>" + e.message + "</span></div></div></div></div>";
+		}
+		else	{
+			div.innerHTML += "<div class='row chatspacing'><div class='col-sm-8'><div class='media border border-dark rounded-lg' style='padding: 5px;'><div class='media-body' style='word-break: break-all;'><h6 class='font-weight-bold' style='margin-bottom: 5px;'>&nbsp;<small style='float: right; font-size: 12px'><i>" + e.date + "</i></small></h6><span style='font-size: 15px;'>" + e.message + "</span></div></div></div><div class='col-sm-4'></div></div>";
+		}
 		
 		var myElement = document.getElementsByClassName("row chatspacing");
 		var topPos = myElement[myElement.length-1].offsetTop;
@@ -114,9 +120,13 @@
 					<a href="/home">
 						<button type="button" class="btn btn-dark btn-block">HOME</button>
 					</a>
-					<button type="button" class="btn btn-dark btn-block">VIEW THIS GROUP REQUESTS</button>
-					<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
-					<button type="button" class="btn btn-dark btn-block">REQUESTS ACCEPTED BY ME</button>
+					<button type="button" class="btn btn-dark btn-block">VIEW THIS REQUEST</button>
+					<a href="/myrequests">
+						<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
+					</a>
+					<a href="/requestacceptedbyme/accepted">
+						<button type="button" class="btn btn-dark btn-block">REQUESTS ACCEPTED BY ME</button>
+					</a>
 				</div>
 			</div>
 

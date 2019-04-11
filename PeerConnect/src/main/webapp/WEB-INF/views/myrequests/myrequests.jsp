@@ -45,10 +45,16 @@
 		<div class="row">
 			<div class="col-sm-2 bg-light sidebarleft">
 				<div class="nav flex-sm-column text-body">
-					<button type="button" class="btn btn-dark btn-block">HOME</button>
-					<button type="button" class="btn btn-dark btn-block">VIEW THIS GROUP REQUESTS</button>
-					<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
-					<button type="button" class="btn btn-dark btn-block">REQUESTS ACCEPTED BY ME</button>
+					<a href="/home">
+						<button type="button" class="btn btn-dark btn-block">HOME</button>
+					</a>
+					<button type="button" class="btn btn-dark btn-block">VIEW MY GROUPS</button>
+					<a href="/myrequests">
+						<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
+					</a>
+					<a href="/requestacceptedbyme/accepted">
+						<button type="button" class="btn btn-dark btn-block">REQUESTS ACCEPTED BY ME</button>
+					</a>
 				</div>
 			</div>
 
