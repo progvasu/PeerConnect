@@ -21,10 +21,6 @@
 	    document.getElementById("b"+clicked_id).style.display = "block";
 	}
 
-  	function sendChatRedirect(a, b) {
-		window.location.href = '/chatinsert?requestid='+a+'&groupid='+b;
-	}
-
   	window.onload = function() {
   		document.getElementsByClassName("blocks")[0].style.display = "block";
 	}
@@ -80,50 +76,9 @@
 			</div>
 
 	    	<div class="col-sm-10 bg-secondary">
-	    		<form name="request_form" action="/home" method="POST">
-	      		<div class="row">
-	          		<div class="col-sm-3"></div>
-	          		<div class="col-sm-6 bg-light requestform rounded-top">
-			              	<div class="input-group mb-2">
-			                	<div class="input-group-prepend">
-			                  		<span class="input-group-text">Request For</span>
-			                	</div>
-	                			<input type="text" name="request_msg" class="form-control" required>
-	                			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-	                			<button type="submit" class="btn btn-dark btn-md requestbutton">Request</button>
-	              			</div>
-	          		</div>
-	          		<div class="col-sm-3">
-	          			<!--  Design Them  -->
-	          			${message}
-	          		</div>
-	      		</div>
-	      		<div class="row">
-	      			<div class="col-sm-3"></div>
-	      			<div class="col-sm-6 bg-light" style="padding-bottom: 8px; text-align: center"><span class="badge badge-secondary">Select Groups</span></div>
-	      			<div class="col-sm-3"></div>
-	      		</div>
-	      		<div class="row">
-	      			<div class="col-sm-3"></div>
-	          		<div class="col-sm-6 bg-light rounded-bottom">
-				          	<div class="input-group mb-2">
-							    <c:if test="${not empty my_groups}">
-							    	<c:forEach items="${my_groups}" var="lists">
-									    <div class="checkboxlabel col-sm-4">
-									      	<label class="form-check-label">
-									        	<input type="checkbox" class="form-check-input"name="selected_groups" value="${lists.key}">${lists.value}
-									      	</label>
-							    		</div>
-							    	</c:forEach>
-					    		</c:if>
-	          				</div>
-	          		</div>
-	        		<div class="col-sm-3"></div>
-	      		</div>  
-	      		</form>
-				<div class="row bg-dark" style="height: 90vh; margin-top: 10px; margin-bottom:10px">
+				<div class="row bg-dark" style="height: 89vh; margin-top: 3.5px; margin-bottom:3.5px">
 					<div class="col-sm-1"></div>
-					<div class="col-sm-2 bg-light" style="height: 90vh; overflow-y: scroll; padding:10px;">
+					<div class="col-sm-2 bg-light" style="height: 89vh; overflow-y: scroll; padding:10px;">
 						<c:if test="${not empty grouprequests}">
 							<c:forEach items="${grouprequests}" var="group">
 								<button type="button" class="btn btn-dark btn-block" style="" onClick="reply_click(this.id)" id="${group.key.getId()}">
@@ -132,7 +87,7 @@
 							</c:forEach>
 						</c:if>
 					</div>
-					<div class="col-sm-8 bg-light" style="height: 90vh; overflow-y: scroll; margin-left: 5px; padding: 10px;">
+					<div class="col-sm-8 bg-light" style="height: 89vh; overflow-y: scroll; margin-left: 5px; padding: 10px;">
 					    <c:if test="${not empty grouprequests}">
 							<c:forEach items="${grouprequests}" var="group">				    
 							    <div class="blocks" id="${'b'}${group.key.getId()}" style="display: none">
@@ -144,27 +99,24 @@
 									
 										<c:forEach items="${group.value}" var="request">
 										<div class="row groupmainspacing">
-											<div class="media border border-dark rounded-lg" style="padding: 5px; width:100%">
-											    <div class="media-body" style="word-break: break-all;">
-											    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">${request.getRequestbyname()}<small style="float: right; font-size: 12px"><i>${request.getCreatedate()}</i></small></h6>
-											    	<span style="font-size: 13px;">${request.getRequestmsg()}</span>
-											    	<div style="float: right">
-											    		<c:if test="${request.getRequestby() ne myid}">
-												    		<button type="button" class="btn btn-outline-dark btn-sm" onclick="sendChatRedirect(${request.getRequestid()}, ${group.key.getId()})">
-														 		Accept
-															</button>
-														</c:if>
-														<c:if test="${request.getRequestby() eq myid}">
-															<button type="button" class="btn btn-outline-dark btn-sm">
-														 		Withdraw Request
-															</button>
-														</c:if>
-											    	</div>
-											    </div>
-											</div>
-											</div>
+										<div class="media border border-dark rounded-lg" style="padding: 5px; width:100%">
+										    <div class="media-body" style="word-break: break-all;">
+										    	<h6 class="font-weight-bold" style="margin-bottom: 5px;">${request.getRequestbyname()}<small style="float: right; font-size: 12px"><i>${request.getCreatedate()}</i></small></h6>
+										    	<span style="font-size: 13px;">${request.getRequestmsg()}</span>
+										    	<div style="float: right">
+											        <form name="chat" method="POST" action="/chat/chat">
+											        	<input type='hidden' id='chatid' name='chatid' value='${request.getChatmaps().get(0).getChatid()}'/>
+											        	<input type='hidden' id='valid' name='valid' value='true'/>
+											        	<button type="submit" class="btn btn-outline-dark btn-sm">
+											 				Open Chat
+														</button>
+														<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+													</form>
+										    	</div>
+										    </div>
+										</div>
+										</div>
 										</c:forEach>
-									
 								</div>
 							</c:forEach>
 						</c:if>

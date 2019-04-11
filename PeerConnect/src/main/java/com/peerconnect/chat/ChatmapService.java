@@ -37,6 +37,7 @@ public class ChatmapService {
 //	public List<Chatmap> getChatMapObjects(List<Integer> requestids)	{
 //		return  chatmapRepository.findAllByRequestidIn(requestids);
 //	}
+	
 	public List<Integer> getChatMapObjectsbyrequestid(int requestid)	{
 		List<Chatmap> chatmaps =chatmapRepository.findAllByRequestid(requestid);
 		List<Integer> acceptersid = new ArrayList<>();

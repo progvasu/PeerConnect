@@ -71,10 +71,8 @@ public class ChatController {
 			return new ModelAndView("redirect:/home");
 		}
 		
-		// add an object for old message
-		
 		ModelAndView model2 = new ModelAndView("chat/chat");
-		
+        
 		// chat id for chat messaging
 		model2.addObject("chatid", model.asMap().get("chatid"));
 		int chatid = (Integer)model.asMap().get("chatid");
@@ -96,6 +94,10 @@ public class ChatController {
         	model2.addObject("requestorname", "YOU");
         }
 		
+        // adding the chat object
+        model2.addObject("oldchatmsgs", chatService.getChatMessages(chatid));
+        model2.addObject("myid", userService.findLoggedId());
+        
 		return model2;
 	}
 	
@@ -120,6 +122,10 @@ public class ChatController {
         	model2.addObject("acceptname", usersubService.getUserNameFromId(obj.getAcceptby()));
         	model2.addObject("requestorname", "YOU");
         }
+        
+        // adding the chat object
+        model2.addObject("oldchatmsgs", chatService.getChatMessages(chatid));
+        model2.addObject("myid", userService.findLoggedId());
         	
         model2.addObject("valid", true);
         

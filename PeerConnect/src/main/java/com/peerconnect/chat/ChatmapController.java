@@ -1,6 +1,5 @@
 package com.peerconnect.chat;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,46 +36,33 @@ public class ChatmapController {
 	@Autowired
 	private GroupstableService groupService;
 	
-	@GetMapping("/requestaccepted")
+	@GetMapping("/myrequests")
     public ModelAndView allrequestaccepted(Model model) {
+    	List<Requesttable> myRequestObjs = requestService.getMyRaisedRequestObjects();
     	
-    	List<Integer> myRequestIds = requestService.getMyRequestraisedIds();
-    	HashMap<Requesttable, List<String>> hmap3 = new HashMap<>();
-    	for (int i : myRequestIds) {
-    		List<Integer> acceptersid = chatmapService.getChatMapObjectsbyrequestid(i);
-    		List<String> acceptersname = new ArrayList<>();;
-    		for(int temp : acceptersid)
-    		{
-    			acceptersname.add(usersSubtableService.getUserNameFromId(temp));
-    		}
-    		hmap3.put(requestService.getRequestObj(i), acceptersname);
+    	for (Requesttable temp : myRequestObjs) {
+    		for (Chatmap chatmapobj : temp.getChatmaps()) {
+				chatmapobj.setGroupname(groupService.getGroupName(chatmapobj.getGroupid()));
+				chatmapobj.setAcceptorname(usersSubtableService.getUserNameFromId(chatmapobj.getAcceptby()));
+			}
     	}
     	
-    	model.addAttribute("requestaccepted", hmap3);
-        return new ModelAndView("/requestaccepted");
+    	model.addAttribute("myrequests", myRequestObjs);
     	
+        return new ModelAndView("/myrequests/myrequests");
     }
 	
-	//-------------------------------------------------------------------------------
-		@GetMapping("/requestacceptedbyme/accepted")
-	    public ModelAndView requestacceptedbyme(Model model) {
-			
-			List<Integer> myGroupIds = membersService.getMyGroupIds();
-	    	
-			// showing each group's request
-	    	HashMap<Groupstable, List<Requesttable>> hmap2 = new HashMap<>();
-	    	for (int i : myGroupIds) {
-	    		//System.out.println(chatmapService.getRequestsAcceptedByMe(i).size());
-	    		hmap2.put(groupService.getGroupById(i), requestService.getRequestsAcceptedByMeObjects(chatmapService.getRequestsAcceptedByMe(i)));
-	    		//System.out.println(requestService.getRequestsAcceptedByMeObjects(chatmapService.getRequestsAcceptedByMe(i)).size());
-	    	}
-	    	//requestService.chatmapService.getRequestsAcceptedByMe(i)
-	    	//System.out.println(hmap2.size());
-	    	model.addAttribute("grouprequests", hmap2);
-	        return new ModelAndView("/requestacceptedbyme/accepted");
-	    }
-		//-------------------------------------------------------------------------------
-	
-	
-	
+	@GetMapping("/requestacceptedbyme/accepted")
+    public ModelAndView requestacceptedbyme(Model model) {
+		List<Integer> myGroupIds = membersService.getMyGroupIds();
+    	
+		// showing each group's request
+    	HashMap<Groupstable, List<Requesttable>> hmap2 = new HashMap<>();
+    	for (int i : myGroupIds) {
+    		hmap2.put(groupService.getGroupById(i), requestService.getRequestsAcceptedByMeObjects(chatmapService.getRequestsAcceptedByMe(i)));
+    	}
+    	
+    	model.addAttribute("grouprequests", hmap2);
+        return new ModelAndView("/requestacceptedbyme/accepted");
+    }
 }

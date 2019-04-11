@@ -21,6 +21,23 @@ public class Chatmap {
 	@JoinColumn(name="requestid", insertable=false, updatable=false)
 	private Requesttable requestmapped;
 	
+	@Transient
+	private String groupname;
+	@Transient
+	private String acceptorname;
+	
+	public String getGroupname() {
+		return groupname;
+	}
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+	public String getAcceptorname() {
+		return acceptorname;
+	}
+	public void setAcceptorname(String acceptorname) {
+		this.acceptorname = acceptorname;
+	}
 	public Requesttable getRequestmapped() {
 		return requestmapped;
 	}
