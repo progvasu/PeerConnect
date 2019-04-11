@@ -14,7 +14,7 @@ public class UsersSubtable {
 	public int getUserid() {
 		return userid;
 	}
-	public void setUser_id(int userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
 	public String getUsername() {

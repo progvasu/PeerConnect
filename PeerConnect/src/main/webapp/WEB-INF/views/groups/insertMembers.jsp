@@ -14,11 +14,11 @@
 		<c:if test="${not empty candidate_members}">
 		    <c:forEach items="${candidate_members}" var="lists">
 		    	<c:choose>
-				    <c:when test="${logged_id==lists.getUser_id()}">
+				    <c:when test="${logged_id==lists.getUserid()}">
 				    	<input type="checkbox" value="${logged_id}" name="member_ids" checked="checked" style="visibility:hidden;">${lists.getUsername()}<br>
 				    </c:when>    
 				    <c:otherwise>
-				        <input type="checkbox" value="${lists.getUser_id()}" name="member_ids">${lists.getUsername()}<br>
+				        <input type="checkbox" value="${lists.getUserid()}" name="member_ids">${lists.getUsername()}<br>
 				    </c:otherwise>
 				</c:choose>
 			</c:forEach>
