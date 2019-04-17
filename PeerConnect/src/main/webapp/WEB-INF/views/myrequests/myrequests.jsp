@@ -76,9 +76,10 @@
 										<div class="col-sm-6" style="padding: 10px;">
 											${chatmap.getAcceptorname()}
 											<span class="badge badge-secondary">${chatmap.getGroupname()}</span>
-											<form name="chat" method="POST" action="/chat/chat">
+											<form name="chat" method="POST" action="/chat/chat" style="display: inline;">
 									        	<input type='hidden' id='chatid' name='chatid' value='${chatmap.getChatid()}'/>
 									        	<input type='hidden' id='valid' name='valid' value='true'/>
+									        
 									        	<button type="submit" class="btn btn-outline-dark btn-sm">
 													Open Chat
 												</button>
