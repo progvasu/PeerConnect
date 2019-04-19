@@ -65,7 +65,7 @@
 			<div class="col-sm-2 bg-light sidebarleft">
 				<div class="nav flex-sm-column text-body">
 					<a href="/home">
-						<button type="button" class="btn btn-dark btn-block">HOME</button>
+						<button type="button" class="btn btn-dark btn-block">TTTTT</button>
 					</a>
 					<a href="/groups/create">
 						<button type="button" class="btn btn-dark btn-block">CREATE GROUP</button>
