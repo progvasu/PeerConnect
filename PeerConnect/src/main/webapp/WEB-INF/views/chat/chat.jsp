@@ -100,10 +100,13 @@
 							Settings
 							</button>
 							<div class="dropdown-menu dropdown-menu-right" >
-								<a class="dropdown-item" href="#">My Profile</a>
+								<!--<a class="dropdown-item" href="#">My Profile</a>
 								<a class="dropdown-item" href="#">Change Password</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Sign Out</a>
+								<div class="dropdown-divider"></div>-->
+								<form action="/logout" method="post">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            						<input class="dropdown-item" type="submit" value="Sign Out"/>
+        						</form>
 							</div>
 						</div>
 					</li>

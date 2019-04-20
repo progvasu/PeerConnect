@@ -47,10 +47,13 @@
 							Settings
 							</button>
 							<div class="dropdown-menu dropdown-menu-right" >
-								<a class="dropdown-item" href="#">My Profile</a>
+								<!--<a class="dropdown-item" href="#">My Profile</a>
 								<a class="dropdown-item" href="#">Change Password</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Sign Out</a>
+								<div class="dropdown-divider"></div>-->
+								<form action="/logout" method="post">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            						<input class="dropdown-item" type="submit" value="Sign Out"/>
+        						</form>
 							</div>
 						</div>
 					</li>
@@ -65,7 +68,7 @@
 			<div class="col-sm-2 bg-light sidebarleft">
 				<div class="nav flex-sm-column text-body">
 					<a href="/home">
-						<button type="button" class="btn btn-dark btn-block">TTTTT</button>
+						<button type="button" class="btn btn-dark btn-block">HOME</button>
 					</a>
 					<a href="/groups/create">
 						<button type="button" class="btn btn-dark btn-block">CREATE GROUP</button>

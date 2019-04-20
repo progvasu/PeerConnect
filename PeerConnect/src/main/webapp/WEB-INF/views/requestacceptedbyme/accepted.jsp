@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home</title>
+  <title>Requests Accepted</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -43,10 +43,13 @@
 							Settings
 							</button>
 							<div class="dropdown-menu dropdown-menu-right" >
-								<a class="dropdown-item" href="#">My Profile</a>
+								<!--<a class="dropdown-item" href="#">My Profile</a>
 								<a class="dropdown-item" href="#">Change Password</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Sign Out</a>
+								<div class="dropdown-divider"></div>-->
+								<form action="/logout" method="post">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            						<input class="dropdown-item" type="submit" value="Sign Out"/>
+        						</form>
 							</div>
 						</div>
 					</li>
@@ -66,7 +69,7 @@
 					<a href="/groups/create">
 						<button type="button" class="btn btn-dark btn-block">CREATE GROUP</button>
 					</a>
-					<a href="/requestaccepted">
+					<a href="/myrequests/myrequests">
 						<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
 					</a>
 					<a href="/requestacceptedbyme/accepted">
