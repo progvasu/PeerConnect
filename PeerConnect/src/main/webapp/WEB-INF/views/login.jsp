@@ -28,9 +28,10 @@
 			}
 			
 			.bg-image {
-			  background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
-			  background-size: cover;
-			  background-position: center;
+			  background-image: url('https://raw.githubusercontent.com/progvasu/CDNPeerConnect/master/login_poster3.png');
+			  background-size: contain;
+			   background-repeat: no-repeat;
+			  background-position: left;
 			}
 			
 			.login-heading {

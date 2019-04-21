@@ -1,5 +1,6 @@
 package com.peerconnect.chat;
 
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,8 +15,11 @@ public class ChattableService {
 	
 	public boolean createChatEntry(Chattable chat)	{
 		// set current date and time
-		Date date = Calendar.getInstance().getTime(); 
-        chat.setDate(date);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(Calendar.getInstance().getTime());
+		cal.add(Calendar.MINUTE, 330);
+	   
+        chat.setDate(cal.getTime());
         
 		chattableRepository.save(chat);
 		
