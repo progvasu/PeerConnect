@@ -32,7 +32,6 @@ public class PeerConnectSecurityConfig extends WebSecurityConfigurerAdapter	{
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                
             .logout()
                 .permitAll();
     }

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Chat</title>
+  <title>My Requests</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -18,7 +18,8 @@
 			<div class="col-sm-12">
 				<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-right: -15px">
 					<a class="navbar-brand" href="#">
-						<img src="peer.png" width="35" height="35" class="d-inline-block align-top img-thumbnail" alt="">
+						<img src="https://raw.githubusercontent.com/progvasu/CDNPeerConnect/master/peer.png
+" width="35" height="35" class="d-inline-block align-top img-thumbnail" alt="">
 						Peer Connect
 					</a>
 				<ul class="navbar-nav ml-auto">
@@ -28,10 +29,13 @@
 							Settings
 							</button>
 							<div class="dropdown-menu dropdown-menu-right" >
-								<a class="dropdown-item" href="#">My Profile</a>
+								<!--<a class="dropdown-item" href="#">My Profile</a>
 								<a class="dropdown-item" href="#">Change Password</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Sign Out</a>
+								<div class="dropdown-divider"></div>-->
+								<form action="/logout" method="post">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            						<input class="dropdown-item" type="submit" value="Sign Out"/>
+        						</form>
 							</div>
 						</div>
 					</li>
@@ -48,7 +52,7 @@
 					<a href="/home">
 						<button type="button" class="btn btn-dark btn-block">HOME</button>
 					</a>
-					<button type="button" class="btn btn-dark btn-block">VIEW MY GROUPS</button>
+					<!-- <button type="button" class="btn btn-dark btn-block">VIEW MY GROUPS</button>-->
 					<a href="/myrequests">
 						<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
 					</a>
@@ -76,9 +80,10 @@
 										<div class="col-sm-6" style="padding: 10px;">
 											${chatmap.getAcceptorname()}
 											<span class="badge badge-secondary">${chatmap.getGroupname()}</span>
-											<form name="chat" method="POST" action="/chat/chat">
+											<form name="chat" method="POST" action="/chat/chat" style="display: inline;">
 									        	<input type='hidden' id='chatid' name='chatid' value='${chatmap.getChatid()}'/>
 									        	<input type='hidden' id='valid' name='valid' value='true'/>
+									        
 									        	<button type="submit" class="btn btn-outline-dark btn-sm">
 													Open Chat
 												</button>
