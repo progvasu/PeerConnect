@@ -170,11 +170,11 @@
 														    </c:otherwise>
 														</c:choose>
 													</c:if>
-													<c:if test="${request.getRequestby() eq myid}">
+													<!--<c:if test="${request.getRequestby() eq myid}">
 														<button type="button" class="btn btn-outline-dark btn-sm">
 													 		Withdraw Request
 														</button>
-													</c:if>
+													</c:if>-->
 										    	</div>
 										    </div>
 										</div>

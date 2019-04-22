@@ -69,7 +69,7 @@
 					<a href="/groups/create">
 						<button type="button" class="btn btn-dark btn-block">CREATE GROUP</button>
 					</a>
-					<a href="/myrequests/myrequests">
+					<a href="/myrequests">
 						<button type="button" class="btn btn-dark btn-block">MY REQUESTS</button>
 					</a>
 					<a href="/requestacceptedbyme/accepted">
